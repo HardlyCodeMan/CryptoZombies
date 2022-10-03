@@ -3,7 +3,7 @@ pragma solidity >=0.5.0 <0.6.0;
 import "./ZombieFactory.sol";
 
 /***
- * @dev Interface to getKitty() from CryptoKittys project
+ * @notice Interface to getKitty() from CryptoKittys project
  */
 contract KittyInterface {
     function getKitty(uint256 _id) external view returns (
@@ -23,13 +23,13 @@ contract KittyInterface {
 contract ZombieFeeding is ZombieFactory {
 
     /***
-     * @dev Load the CryptoKitty contract address
+     * @notice Load the CryptoKitty contract address
      */
     address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;
     KittyInterface kittyContract = KittyInterface(ckAddress);
 
     /***
-     * @dev Ensure msg.sender owns the zombie
+     * @notice Ensure msg.sender owns the zombie
      * @param _zombieId accepts uint of an owned zombie
      * @param _targetDna accepts uint of target zombie
      */
@@ -47,7 +47,7 @@ contract ZombieFeeding is ZombieFactory {
     }
 
     /***
-     * @dev Get genes data from kittyContract for _kittyId
+     * @notice Get genes data from kittyContract for _kittyId
      * @param _zombieId accepts uint for owned zombie checked in feedAndMultiply()
      * @param _kittyId accepts uint for CryptoKitty
      */

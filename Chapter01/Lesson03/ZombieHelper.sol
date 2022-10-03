@@ -5,7 +5,7 @@ import "./ZombieFeeding.sol";
 contract ZombieHelper is ZombieFeeding {
     
     /***
-     * @dev ensure zombie is at or above a certain level
+     * @notice ensure zombie is at or above a certain level
      * @param _level check value
      * @param _zombieId zombie to check
      */
@@ -15,7 +15,7 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     /***
-     * @dev allow user to change zombie name from level 2
+     * @notice allow user to change zombie name from level 2
      * @param _zombieId zombie to change name
      * @param _newName new name for the zombie
      */
@@ -25,7 +25,7 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     /***
-     * @dev allow user to change zombie dna from level 20
+     * @notice allow user to change zombie dna from level 20
      * @param _zombieId zombie to change dna
      * @param _newDna new dna for the zombie
      */
@@ -35,7 +35,7 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     /***
-     * @dev returm an array of all the zombies owned by the owner
+     * @notice returm an array of all the zombies owned by the owner
      * @param _owner owner address to load all the zombies
      */
     function getZombiesByOwner(address _owner) external view returns(uint[] memory) {

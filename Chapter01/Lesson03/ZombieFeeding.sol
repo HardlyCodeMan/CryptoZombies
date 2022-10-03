@@ -3,7 +3,7 @@ pragma solidity >=0.5.0 <0.6.0;
 import "./ZombieFactory.sol";
 
 /***
- * @dev Interface to getKitty() from CryptoKittys project
+ * @notice Interface to getKitty() from CryptoKittys project
  */
 contract KittyInterface {
     function getKitty(uint256 _id) external view returns (
@@ -25,7 +25,7 @@ contract ZombieFeeding is ZombieFactory {
     KittyInterface kittyContract;
 
     /***
-     * @dev Load the CryptoKitty contract address
+     * @notice Load the CryptoKitty contract address
      * @param _address accepts contract address
      */
     function setKittyContractAddress(address _address) external onlyOwner {
@@ -33,7 +33,7 @@ contract ZombieFeeding is ZombieFactory {
     }
 
     /***
-     * @dev resets cooldownTime when called after an action
+     * @notice resets cooldownTime when called after an action
      * @param _zombie accepts the Zombie struct
      */
     function _triggerCooldown(Zombie storage _zombie) internal {
@@ -41,7 +41,7 @@ contract ZombieFeeding is ZombieFactory {
     }
 
     /***
-     * @dev checks true/false is the zombie is ready to conduct an action
+     * @notice checks true/false is the zombie is ready to conduct an action
      * @param _zombie accepts the Zombie struct
      */
     function _isReady(Zombie storage _zombie) internal view returns (bool) {
@@ -49,7 +49,7 @@ contract ZombieFeeding is ZombieFactory {
     }
 
     /***
-     * @dev Ensure msg.sender owns the zombie
+     * @notice Ensure msg.sender owns the zombie
      * @param _zombieId accepts uint of an owned zombie
      * @param _targetDna accepts uint of target zombie
      * @param _species cat or zombie?
@@ -61,7 +61,7 @@ contract ZombieFeeding is ZombieFactory {
         _targetDna = _targetDna % dnaModulus;
         uint newDna = (myZombie.dna + _targetDna) / 2;
 
-        require(_isReady(myZombie), "Error Zombie still in cooldown");    ///@dev ensure zombie is actionable
+        require(_isReady(myZombie), "Error Zombie still in cooldown");    ///@notice ensure zombie is actionable
         
         if(keccak256(abi.encodePacked(_species)) == keccak256(abi.encodePacked("kitty"))) {
             newDna = newDna - newDna % 100 + 99;
@@ -72,7 +72,7 @@ contract ZombieFeeding is ZombieFactory {
     }
 
     /***
-     * @dev Get genes data from kittyContract for _kittyId
+     * @notice Get genes data from kittyContract for _kittyId
      * @param _zombieId accepts uint for owned zombie checked in feedAndMultiply()
      * @param _kittyId accepts uint for CryptoKitty
      */

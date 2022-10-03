@@ -7,7 +7,7 @@ contract ZombieHelper is ZombieFeeding {
     uint levelUpFee = 0.001 ether;
     
     /***
-     * @dev ensure zombie is at or above a certain level
+     * @notice ensure zombie is at or above a certain level
      * @param _level check value
      * @param _zombieId zombie to check
      */
@@ -17,7 +17,7 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     /***
-     * @dev withdraw contract balance
+     * @notice withdraw contract balance
      */
     function withdraw() external onlyOwner {
         address payable _owner = address(uint160(owner()));
@@ -25,7 +25,7 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     /***
-     * @dev modify levelUpFee to suit changes in Eth price
+     * @notice modify levelUpFee to suit changes in Eth price
      * @param _fee new levelUpFee value
      */
     function setLevelUpFee(uint _fee) external onlyOwner {
@@ -33,7 +33,7 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     /***
-     * @dev user pays a fee level up zombie
+     * @notice user pays a fee level up zombie
      * @param _zombieId zombie to level up
      */
     function levelUp(uint _zombieId) external payable {
@@ -42,7 +42,7 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     /***
-     * @dev allow user to change zombie name from level 2
+     * @notice allow user to change zombie name from level 2
      * @param _zombieId zombie to change name
      * @param _newName new name for the zombie
      */
@@ -51,7 +51,7 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     /***
-     * @dev allow user to change zombie dna from level 20
+     * @notice allow user to change zombie dna from level 20
      * @param _zombieId zombie to change dna
      * @param _newDna new dna for the zombie
      */
@@ -60,7 +60,7 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     /***
-     * @dev returm an array of all the zombies owned by the owner
+     * @notice returm an array of all the zombies owned by the owner
      * @param _owner owner address to load all the zombies
      */
     function getZombiesByOwner(address _owner) external view returns(uint[] memory) {

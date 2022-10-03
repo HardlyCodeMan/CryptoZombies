@@ -3,11 +3,11 @@ pragma solidity >=0.5.0 <0.6.0;
 import "./ZombieHelper.sol";
 
 contract ZombieAttack is ZombieHelper {
-    uint randNonce;     /// @dev cheaper for gas than = 0;
+    uint randNonce;     /// @notice cheaper for gas than = 0;
     uint attackVictoryProbability = 70;
 
     /***
-     * @dev create a random number through keccak256 and modulus (%)
+     * @notice create a random number through keccak256 and modulus (%)
      * @param _modulus modulus value for calculation
      * @audit insecure method of randomness that can be attacked by miners
      */
@@ -17,7 +17,7 @@ contract ZombieAttack is ZombieHelper {
     }
 
     /***
-     * @dev calculate outcome and process the attack 
+     * @notice calculate outcome and process the attack 
      * @param _zombieID attacking zombie
      * @param _targetID defending zombie
      */

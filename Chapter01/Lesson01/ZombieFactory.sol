@@ -2,30 +2,30 @@ pragma solidity >=0.5.0 <0.6.0;
 
 contract ZombieFactory {
 
-    /// @dev State Variables
+    /// @notice State Variables
     uint dnaDigits = 16;
     uint dnaModulus = 10**dnaDigits;
 
-    /// @dev Structs
+    /// @notice Structs
     struct Zombie {
         string name;
         uint dna;
     }
 
-    /// @dev Arrays
+    /// @notice Arrays
     Zombie[] public zombies;
 
-    /// @dev events
+    /// @notice events
     event NewZombie(uint zombieId, string name, uint dna);
 
-    /// @dev functions
+    /// @notice functions
 
     /***
      * @param _name accepts string for Zombie name
      * @param _dna accepts uint for Zombie dna
      */
     function _createZombie(string memory _name, uint _dna) private {
-        /// @dev add new zombie to array
+        /// @notice add new zombie to array
         Zombie _newZombie = Zombie(_name, _dna);
         uint id = zombies.push(_newZombie) -1;
         // zombies.push(Zombie(_name, _dna)); // 1 liner variation of array push
