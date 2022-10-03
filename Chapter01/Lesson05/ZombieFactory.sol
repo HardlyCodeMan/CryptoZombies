@@ -37,11 +37,11 @@ contract ZombieFactory is Ownable {
 
     /// @notice functions
 
-    /***
-     * @notice create a new zombie
-     * @param _name accepts string for Zombie name
-     * @param _dna accepts uint for Zombie dna
-     */
+    ///
+     /// @notice create a new zombie
+     /// @param _name accepts string for Zombie name
+     /// @param _dna accepts uint for Zombie dna
+     ///
     function _createZombie(string memory _name, uint _dna) internal {
         /// @notice add new zombie to array
         Zombie _newZombie = Zombie(_name, _dna, 1, uint32(now + cooldownTime),0 ,0);
@@ -54,19 +54,19 @@ contract ZombieFactory is Ownable {
         emit NewZombie(id, _name, _dna);
     }
 
-    /***
-     * @notice generate random zombie dna
-     * @param _str accepts string for entropy
-     */
+    ///
+     /// @notice generate random zombie dna
+     /// @param _str accepts string for entropy
+     ///
     function _generateRandomDna(string memory _str) private view returns (uint) {
         uint rand = uint(keccak256(abi.encodePacked(_str)));    /// @audit insecure method of randomness non-issue in this use
         return rand % dnaModulus;
     }
 
-    /***
-     * @notice only create a zombie if the account hasn't yet created one
-     * @param _name accepts string for Zombie name
-     */
+    ///
+     /// @notice only create a zombie if the account hasn't yet created one
+     /// @param _name accepts string for Zombie name
+     ///
     function createRandomZombie(string memory _name) public {
         require(ownerZombieCount[msg.sender] == 0, "Error creating zombie, user already created a zombie");
         uint randDna = _generateRandomDna(_name);

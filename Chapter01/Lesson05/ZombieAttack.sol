@@ -6,21 +6,21 @@ contract ZombieAttack is ZombieHelper {
     uint randNonce;     /// @notice cheaper for gas than = 0;
     uint attackVictoryProbability = 70;
 
-    /***
-     * @notice create a random number through keccak256 and modulus (%)
-     * @param _modulus modulus value for calculation
-     * @audit insecure method of randomness that can be attacked by miners
-     */
+    ///
+     /// @notice create a random number through keccak256 and modulus (%)
+     /// @param _modulus modulus value for calculation
+     /// @audit insecure method of randomness that can be attacked by miners
+     ///
     function randMod(uint _modulus) internal returns(uint) {
         randNonce++;
         return uint (keccak256(abi.encodePacked(now, msg.sender, randNonce))) % _modulus;
     }
 
-    /***
-     * @notice calculate outcome and process the attack 
-     * @param _zombieID attacking zombie
-     * @param _targetID defending zombie
-     */
+    ///
+     /// @notice calculate outcome and process the attack 
+     /// @param _zombieID attacking zombie
+     /// @param _targetID defending zombie
+     ///
     function attack(uint _zombieId, uint _targetId) external ownerOf(_zombieId) {
         Zombie storage myZombie = zombies[_zombieId];
         Zombie storage enemyZombie = zombies[_targetId];

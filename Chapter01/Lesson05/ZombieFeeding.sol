@@ -2,9 +2,9 @@ pragma solidity >=0.5.0 <0.6.0;
 
 import "./ZombieFactory.sol";
 
-/***
- * @notice Interface to getKitty() from CryptoKittys project
- */
+///
+ /// @notice Interface to getKitty() from CryptoKittys project
+ ///
 contract KittyInterface {
     function getKitty(uint256 _id) external view returns (
         bool isGestating,
@@ -24,45 +24,45 @@ contract ZombieFeeding is ZombieFactory {
 
     KittyInterface kittyContract;
 
-    /***
-     * @notice modifier to check msg.sender is owner of the zombie
-     * @param _zombieId zombie to check ownership
-     */
+    ///
+     /// @notice modifier to check msg.sender is owner of the zombie
+     /// @param _zombieId zombie to check ownership
+     ///
     modifier onlyOwnerOf(uint _zombieId) {
         require(msg.sender == zombieToOwner[_zombieId]);
         _;
     }
 
-    /***
-     * @notice Load the CryptoKitty contract address
-     * @param _address accepts contract address
-     */
+    ///
+     /// @notice Load the CryptoKitty contract address
+     /// @param _address accepts contract address
+     ///
     function setKittyContractAddress(address _address) external onlyOwner {
         kittyContract = KittyInterface(_address);
     }
 
-    /***
-     * @notice resets cooldownTime when called after an action
-     * @param _zombie accepts the Zombie struct
-     */
+    ///
+     /// @notice resets cooldownTime when called after an action
+     /// @param _zombie accepts the Zombie struct
+     ///
     function _triggerCooldown(Zombie storage _zombie) internal {
         _zombie.readyTime = uint32(now + cooldownTime);
     }
 
-    /***
-     * @notice checks true/false is the zombie is ready to conduct an action
-     * @param _zombie accepts the Zombie struct
-     */
+    ///
+     /// @notice checks true/false is the zombie is ready to conduct an action
+     /// @param _zombie accepts the Zombie struct
+     ///
     function _isReady(Zombie storage _zombie) internal view returns (bool) {
         return (_zombie.readyTime <= now);
     }
 
-    /***
-     * @notice Ensure msg.sender owns the zombie
-     * @param _zombieId accepts uint of an owned zombie
-     * @param _targetDna accepts uint of target zombie
-     * @param _species cat or zombie?
-     */
+    ///
+     /// @notice Ensure msg.sender owns the zombie
+     /// @param _zombieId accepts uint of an owned zombie
+     /// @param _targetDna accepts uint of target zombie
+     /// @param _species cat or zombie?
+     ///
     function feedAndMultiply(uint _zombieId, uint _targetDna, _species) internal onlyOwnerOf(_zombieId) {
         require(msg.sender == zombieToOwner[_zombieId], "Error you don't own this zombie");
         Zombie storage myZombie = zombies[_zombieId];
@@ -80,11 +80,11 @@ contract ZombieFeeding is ZombieFactory {
         _triggerCooldown(myZombie);
     }
 
-    /***
-     * @notice Get genes data from kittyContract for _kittyId
-     * @param _zombieId accepts uint for owned zombie checked in feedAndMultiply()
-     * @param _kittyId accepts uint for CryptoKitty
-     */
+    ///
+     /// @notice Get genes data from kittyContract for _kittyId
+     /// @param _zombieId accepts uint for owned zombie checked in feedAndMultiply()
+     /// @param _kittyId accepts uint for CryptoKitty
+     ///
     function feedOnKitty(uint _zombieId, uint _kittyId) public {
         uint kittyDna;
         (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);

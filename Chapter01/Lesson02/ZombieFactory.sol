@@ -24,10 +24,10 @@ contract ZombieFactory {
 
     /// @notice functions
 
-    /***
-     * @param _name accepts string for Zombie name
-     * @param _dna accepts uint for Zombie dna
-     */
+    ///
+     /// @param _name accepts string for Zombie name
+     /// @param _dna accepts uint for Zombie dna
+     ///
     function _createZombie(string memory _name, uint _dna) internal {
         /// @notice add new zombie to array
         Zombie _newZombie = Zombie(_name, _dna);
@@ -40,18 +40,18 @@ contract ZombieFactory {
         emit NewZombie(id, _name, _dna);
     }
 
-    /***
-     * @param _str accepts string for entropy
-     */
+    ///
+     /// @param _str accepts string for entropy
+     ///
     function _generateRandomDna(string memory _str) private view returns (uint) {
         uint rand = uint(keccak256(abi.encodePacked(_str)));    /// @audit insecure method of randomness
         return rand % dnaModulus;
     }
 
-    /***
-     * @notice only create a zombie if the account hasn't yet created one
-     * @param _name accepts string for Zombie name
-     */
+    ///
+     /// @notice only create a zombie if the account hasn't yet created one
+     /// @param _name accepts string for Zombie name
+     ///
     function createRandomZombie(string memory _name) public {
         require(ownerZombieCount[msg.sender] == 0, "Error creating zombie, user already created a zombie");
         uint randDna = _generateRandomDna(_name);
